@@ -14,4 +14,4 @@ st.set_page_config(layout='wide')
 
 # Separadores das colunas e o que marca a casa decimal (. ou ,)
 df = pd.read_csv('supermarket_sales.csv', sep=';', decimal=',')
-df
+df["Date"]
