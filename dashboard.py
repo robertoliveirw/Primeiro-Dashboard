@@ -1,8 +1,8 @@
 # O que deve ser feito?
 # Com uma visão mensal
-# faturamento por unidade…
-# tipo de produto mais vendido, contribuição por filial,
-# Desempenho das forma de pagamento…
+# faturamento por unidade
+# tipo de produto mais vendido, contribuição por filial
+# Desempenho das forma de pagamento
 # Como estão as avaliações das filiais?
 
 import streamlit as st  # Biblioteca de construção de Dash
@@ -24,5 +24,12 @@ df_filtered = df[df["Month"] == month] # Filtro do Pandas
 col1, col2 = st.columns(2) # (Duas caixas imaginárias Col1 e Col2) Dois gráficos na parte de cima da tela
 col3, col4, col5 = st.columns(3)# (Três caixas imaginárias Col3, Col4 e Col5) Três gráficos na parte de cima da tela
 
-fig_date = px.bar(df_filtered, x='Date', y='Total', color='City', title='Faturamento por dia') #Criando um gráfico de barras
-col1.plotly_chart(fig_date) #Reservando o espaço col1 para o gráfico
+fig_date = px.bar(df_filtered, x='Date', y='Total', color='City', title='Faturamento por dia') # Criando um gráfico de barras
+col1.plotly_chart(fig_date) # Reservando o espaço col1 para o gráfico
+
+fig_prod = px.bar(df_filtered, x="Date", y="Product line", color="City", title="Faturamento por tipo de produto", orientation="h") # Gráfico de barra na horizontal
+col2.plotly_chart(fig_prod) # Reservando o espaço col2 para o gráfico
+
+city_total = df_filtered.groupby("City")[["Total"]].sum().reset_index() # Contribuição por cidade
+fig_city = px.bar(city_total, x="City", y="Total", title="Faturamento por filial") #Gráfico de barra da contribuição por filial
+col3.plotly_chart(fig_city, use_container_width=True) # Reservando o espaço col3 para o gráfico
