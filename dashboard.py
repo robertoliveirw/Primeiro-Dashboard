@@ -22,7 +22,7 @@ df_filtered = df[df["Month"] == month] # Filtro do Pandas
 #df_filtered # Aparecendo o filtro
 
 col1, col2 = st.columns(2) # (Duas caixas imaginárias Col1 e Col2) Dois gráficos na parte de cima da tela
-col3, col4, col5 = st.columns(3)# (Três caixas imaginárias Col3, Col4 e Col5) Três gráficos na parte de cima da tela
+col3, col4, col5 = st.columns(3)# (Três caixas imaginárias Col3, Col4 e Col5) Três gráficos na parte inferior a da tela
 
 fig_date = px.bar(df_filtered, x='Date', y='Total', color='City', title='Faturamento por dia') # Criando um gráfico de barras
 col1.plotly_chart(fig_date) # Reservando o espaço col1 para o gráfico
